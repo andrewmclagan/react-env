@@ -97,7 +97,7 @@ ADD . .
 RUN yarn build
 
 # Create deployable image
-FROM beamaustralia/create-react-env:1.0.0
+FROM beamaustralia/react-env:1.0.0
 
 WORKDIR /var/www
 
@@ -120,7 +120,7 @@ Then you can hit http://localhost:8080 or http://host-ip:8080 in your browser.
 
 #### Tech Overview
 
-This library uses a small Golang binary that is responsible for generating the `env.js` environment file. We do this for tow reasons. 
+This library uses a small Golang binary that is responsible for generating the `env.js` environment file. We do this for two reasons. 
 
 1. A discreet binary enables us build the env config while booting an Nginx docker container without installing npm, nodejs and a host of packages. The resulting Nginx Alpine Docker container comes in at under 10Mb.
 

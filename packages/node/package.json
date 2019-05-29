@@ -6,7 +6,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "repository": "http://github.com/beam-australia/create-react-env",
+    "repository": "http://github.com/beam-australia/react-env",
     "main": "dist/index.js",
     "bin": {
         "react-env": "dist/cli.js"
