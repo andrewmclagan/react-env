@@ -4,7 +4,8 @@ const spawn = require("cross-spawn");
 const fs = require("fs");
 const argv = require("minimist")(process.argv.slice(2));
 
-const NODE_ENV = process.env.NODE_ENV || "development";
+const envArg = argv.envArg || "NODE_ENV";
+const environment = process.env[envArg] || "development";
 
 function writeBrowserEnvironment(env) {
   const basePath = fs.realpathSync(process.cwd());
@@ -21,7 +22,9 @@ function getEnvironment() {
         env[key] = process.env[key];
         return env;
       },
-      { NODE_ENV: NODE_ENV }
+      { [envArg]: environment,
+        NODE_ENV: process.env.NODE_ENV
+      },
     );
 }
 
@@ -41,9 +44,9 @@ function getEnvFiles() {
   }
   return [
     ...appendFiles,
-    resolveFile(`.env.${NODE_ENV}.local`),
-    resolveFile(`.env.${NODE_ENV}`),
-    NODE_ENV !== "test" && resolveFile(".env.local"),
+    resolveFile(`.env.${environment}.local`),
+    resolveFile(`.env.${environment}`),
+    environment !== "test" && resolveFile(".env.local"),
     resolveFile(".env")
   ].filter(Boolean);
 }
