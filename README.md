@@ -12,7 +12,7 @@ Allows your react app's environment variables to be populated at **run-time** ra
 
 ### Overview
 
-This package generates a `env.js` file that contains white-listed environment variables that have a `REACT_APP_` preposition, as per the [CRA documentation](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables).
+This package generates a `env.json` file that contains white-listed environment variables that have a `REACT_APP_` preposition, as per the [CRA documentation](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables).
 
 In the browser your variables will be available at `window._env.REACT_APP_FOO` and on the server `process.env.REACT_APP_FOO`. We have included a helper function to make retrieving a value easier:
 
@@ -45,7 +45,7 @@ export default props => (
 
 ### Runtime environment variables
 
-The `env.js` environment configuration file is generated as the container boots. Therefore it will contain whitelisted env vars that are present at _container start_, any new environment variables needs a container restart. This is normal Docker behaviour.
+The `env.json` environment configuration file is generated as the container boots. Therefore it will contain whitelisted env vars that are present at _container start_, any new environment variables needs a container restart. This is normal Docker behaviour.
 
 ### .env file order of priority
 
@@ -60,7 +60,7 @@ e.g. `.env.development.local, .env.development, .env.local, .env`
 $ react-env <command with arguments> --env /path/to/.env.foo --env /path/to/.env.bar --dest /path/to/build
 ```
 
-This will generate a `env.js` file in the dest directory `/path/to/build` and then run the command. The command will have all the environment variable available in `process.env`, great for server side rending and other use-cases.
+This will generate a `env.json` file in the dest directory `/path/to/build` and then run the command. The command will have all the environment variable available in `process.env`, great for server side rending and other use-cases.
 
 * `<command>` 
 
@@ -68,8 +68,8 @@ You may pass a command, such as a nodejs entry file to the `react-env` cli tool.
 
 * `--env` **(default: null)**
 
-Read in another `.env` file for populating `env.js`. You may include multiple env files.
+Read in another `.env` file for populating `env.json`. You may include multiple env files.
 
 * `--dest` **(default: ./public)**
 
-Change the default destination for generating the `env.js` file
+Change the default destination for generating the `env.json` file

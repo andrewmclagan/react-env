@@ -12,7 +12,8 @@ export function loadEnv() {
   process.argv = ["", "", "--dest", "."];
   const basePath = fs.realpathSync(process.cwd());
   require(`${basePath}/src/cli-index`);
-  require(`${basePath}/env.js`);
+  const tempEnv = require(`${basePath}/env.json`);
+  window._env = tempEnv;
 }
 
 export function mockEnvFiles(files = defaults) {
@@ -27,7 +28,7 @@ export function mockEnvFiles(files = defaults) {
 }
 
 export function resetMocks() {
-  del.sync([".env*", "env.js"]);
+  del.sync([".env*", "env.json"]);
   jest.resetModules();
   delete window._env;
   delete process.env.REACT_APP_FOO;

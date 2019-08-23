@@ -9,8 +9,8 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 function writeBrowserEnvironment(env) {
   const basePath = fs.realpathSync(process.cwd());
   const destPath = argv.dest ? `${argv.dest}/` : "public/";
-  const populate = `window._env = ${JSON.stringify(env)};`;
-  fs.writeFileSync(`${basePath}/${destPath}env.js`, populate);
+  const populate = JSON.stringify(env);
+  fs.writeFileSync(`${basePath}/${destPath}env.json`, populate);
 }
 
 function getEnvironment() {
