@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const NODE_ENV = process.env.NODE_ENV || "development";
 
 function isBrowser() {
@@ -28,4 +30,12 @@ export default function env(key = "") {
     return process.env.NODE_ENV;
   }
   return key.length ? process.env[safeKey] : getFiltered();
+}
+
+export async function bindEnvVariables() {
+  await axios.get("/env.json", {responseType: "json"}).then((response) => {
+    window._env = response;
+  }).catch((error) => {
+    console.log(error);
+  })
 }
