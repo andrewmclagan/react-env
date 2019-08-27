@@ -1,12 +1,12 @@
 {
-  "name": "@beam-australia/react-env",
+  "name": "react-env",
   "version": "0.1.0-dev",
   "author": "andrewmclagan",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "http://github.com/beam-australia/react-env",
+  "repository": "http://github.com/AnthonyCrowcroft/react-env",
   "main": "dist/index.js",
   "types": "dist/types.d.ts",
   "bin": {
