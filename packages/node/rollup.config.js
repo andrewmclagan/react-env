@@ -7,13 +7,13 @@ export default [
       file: "dist/cli-index.js",
       format: "cjs"
     },
-    external: ["shelljs", "yargs"]
+    external: ["shelljs", "yargs", "axios"]
   },
   {
     input: "src/index.js",
     output: {
       file: "dist/index.js",
-      format: "cjs"
+      format: "esm"
     },
     plugins: [
       commonjs()

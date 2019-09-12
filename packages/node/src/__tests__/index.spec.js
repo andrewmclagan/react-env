@@ -1,4 +1,5 @@
-import env from "../";
+import { env, bindEnvVariables } from "../";
+import mockAxios from "jest-mock-axios";
 
 beforeEach(() => {
   // Reset mocks
@@ -73,4 +74,37 @@ test("returns undefined when variable does not exist in the browser", () => {
 
 test("returns undefined when variable does not exist in the server", () => {
   expect(env("BAM_BAM_BAM")).toBe(undefined);
+});
+
+it("fetches data from env.json", async () => {
+
+  // setup
+  const mockResponse = {
+      data: {
+        "NODE_ENV": "test",
+        "REACT_APP_FOO": "bar",
+        "REACT_APP_BAR": "foo"
+      },
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: {},
+  };
+
+  // work
+  bindEnvVariables();
+  let firstRequestInfo = mockAxios.lastReqGet();
+
+  // mockAxios.mockResponse(mockResponse, firstRequestInfo);
+  //
+  // // expect
+  // expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  // expect(mockAxios.get).toHaveBeenCalledWith(
+  //     "/env.json",
+  // );
+  // expect(env()).toEqual({
+  //   NODE_ENV: "test",
+  //   REACT_APP_FOO: "bar",
+  //   REACT_APP_BAR: "foo"
+  // });
 });

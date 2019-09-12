@@ -1,10 +1,4 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var axios = _interopDefault(require('axios'));
+import axios from 'axios';
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 
@@ -39,12 +33,11 @@ function env(key = "") {
 }
 
 async function bindEnvVariables() {
-  await axios.get("/env", {responseType: "json"}).then((response) => {
-    window._env = response;
+  await axios.get("/env.json", {responseType: "json"}).then((response) => {
+    window._env = response.data;
   }).catch((error) => {
     console.log(error);
   });
 }
 
-exports.bindEnvVariables = bindEnvVariables;
-exports.default = env;
+export { bindEnvVariables, env };

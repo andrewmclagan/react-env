@@ -18,7 +18,7 @@ function getFiltered() {
     );
 }
 
-export default function env(key = "") {
+export function env(key = "") {
   const safeKey = `REACT_APP_${key}`;
   if (isBrowser() && key === "NODE_ENV") {
     return window._env.NODE_ENV;
@@ -34,7 +34,7 @@ export default function env(key = "") {
 
 export async function bindEnvVariables() {
   await axios.get("/env.json", {responseType: "json"}).then((response) => {
-    window._env = response;
+    window._env = response.data;
   }).catch((error) => {
     console.log(error);
   })
