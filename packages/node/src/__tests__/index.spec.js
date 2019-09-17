@@ -95,16 +95,16 @@ it("fetches data from env.json", async () => {
   bindEnvVariables();
   let firstRequestInfo = mockAxios.lastReqGet();
 
-  // mockAxios.mockResponse(mockResponse, firstRequestInfo);
-  //
-  // // expect
-  // expect(mockAxios.get).toHaveBeenCalledTimes(1);
-  // expect(mockAxios.get).toHaveBeenCalledWith(
-  //     "/env.json",
-  // );
-  // expect(env()).toEqual({
-  //   NODE_ENV: "test",
-  //   REACT_APP_FOO: "bar",
-  //   REACT_APP_BAR: "foo"
-  // });
+  mockAxios.mockResponse(mockResponse, firstRequestInfo);
+
+  // expect
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toHaveBeenCalledWith(
+      "/env.json", {"responseType": "json"}
+  );
+  expect(env()).toEqual({
+    NODE_ENV: "test",
+    REACT_APP_FOO: "bar",
+    REACT_APP_BAR: "foo"
+  });
 });
