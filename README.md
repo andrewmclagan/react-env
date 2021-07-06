@@ -28,6 +28,10 @@ Populates your environment from `.env` files at **run-time** rather than **build
 
 ### Getting started
 
+```bash
+npm install @beam-australia/react-env # yarn add @beam-australia/react-env
+```
+
 This package generates a `__ENV.js` file from multiple `.env` files that contains white-listed environment variables that have a `REACT_APP_` prefix.
 
 ```html
@@ -176,6 +180,13 @@ FROM node:alpine
 ENTRYPOINT yarn react-env --env APP_ENV
 
 CMD yarn start
+```
+
+You can build the docker image without including any `.env` files and pass in the `.env` file with the `APP_ENV` value via the docker run command, this way you'll have a container without any environment variables at all and are populating those values purely at runtime
+
+```bash
+docker build -t next-app -f Dockerfile .
+docker run -p 8080:3000 --env APP_ENV=staging -v $(pwd)/.env.staging:/app/.env.staging next-app
 ```
 
 ### Arguments and parameters
