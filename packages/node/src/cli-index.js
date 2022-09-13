@@ -43,6 +43,7 @@ function getEnvFiles() {
   const path = argv.p || argv.path || "";
   return [
     resolveFile(path),
+    resolveFile(`.env.${envVal}.local`),
     resolveFile(`.env.${envVal}`),
     resolveFile(".env.local"),
     resolveFile(".env"),
